@@ -1,0 +1,28 @@
+{
+  "name": "oop-challenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jesse3421/OOP-Challenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jesse3421/OOP-Challenge/issues"
+  },
+  "homepage": "https://github.com/Jesse3421/OOP-Challenge#readme",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "inquirer": "^8.2.0",
+    "jest": "^27.3.1",
+    "path": "^0.12.7"
+  }
+}
