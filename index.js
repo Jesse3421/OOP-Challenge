@@ -6,13 +6,11 @@ const Manager = require("./lib/Manager")
 const Intern = require("./lib/Intern")
 const Engineer = require("./lib/Engineer")
 const Employee = require("./lib/Employee")
+const { choices } = require("yargs")
 const employeeArr = []
 //const generatePage = require("./src/template.html")
 //import classes (manager, intern, engineer) 
 
-function createProfile(){
-
-}
 
 const managerPrompt = () => {
     return inquirer.prompt([
@@ -37,7 +35,8 @@ const managerPrompt = () => {
         },
     ])
 }
-const promptPositions = () => {
+const promptPositions = answers => {
+    console.log(answers)
     return inquirer.prompt([
         {
             type: "list",
@@ -46,9 +45,18 @@ const promptPositions = () => {
             choices: ["engineer", "intern", "OR finish building your team"] 
         }
     ])
+    .then(answers => {
+        if(answers.choices == "engineer") {
+            return promptEngineer(answers)
+        } else if(answers.choices == "intern"){
+            return promptIntern(answers)
+        } else {
+        return answers  
+        }
+    })
 }
 
-const promptEnineer = () => {
+const promptEngineer = (answers) => {
     return inquirer.prompt([
         {
             type: "input",
@@ -58,7 +66,7 @@ const promptEnineer = () => {
     ])
 }
 
-const promptIntern = () => {
+const promptIntern = (answers) => {
     return inquirer.prompt([
         {
             type:"input",
@@ -68,17 +76,29 @@ const promptIntern = () => {
     ])
 }
 
-managerPrompt()
-    .then(answers => {
-        const manager = new Manager(answers)
-        console.log(manager)
+managerPrompt()    
+    .then(promptPositions) 
+    .then (answers => {
+        console.log(answers)
+        
+    })
+
+    //.then(({name, id, email, officeNumber}) => {
+      //  this.manager = new Manager(name, id, email, officeNumber)
+        //console.log(this.manager)
+        //employeeArr.push(this.manager)
+        //console.log(employeeArr)
+      //  .then(({name, id, email, officeNumber}) => {
+       //     this.employee = new Employee(name, id, email, officeNumber)
+        //    console.log(this.employee)
+        //})
 
 
-
+    
 
         //const promptData = promptPositions(answers).positions 
         //console.log(promptData)
-    })
+    
     //      switch (promptData){
     //      case "engineer":
     //          return Engineer
@@ -101,4 +121,21 @@ managerPrompt()
 // employees.push(manager)
 // call switch case function to direct traffic
 
-module.exports = createProfile
+/*const position = answers.positions
+        console.log(position)
+            switch (position){
+                case "engineer":
+                    console.log("engineer was chosen")
+                    promptEngineer(answers)
+                    this.position = new Engineer(position)
+                    console.log(this.position)
+                break
+                case "intern":
+                    console.log("intern was chosen")
+                break
+                case "OR finish building your team":
+                    return answers
+                    
+                default:
+                    console.log("this didn't work")
+            } */
