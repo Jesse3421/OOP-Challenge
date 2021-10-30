@@ -1,7 +1,7 @@
 const employeeArr = require('./index')
 
 
-function buildTeam(employeeArr){
+const buildTeam = employeeArr => {
     for(i = 0; i > employeeArr.length; i++) {
         let team = ''
         let role = employeeArr[i].getRole()

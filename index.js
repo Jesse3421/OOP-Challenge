@@ -12,7 +12,7 @@ const employeeArr = []
 //const generatePage = require("./src/template.html")
 //import classes (manager, intern, engineer) 
 
-
+//This is the initial set of prompts to the user
 const managerPrompt = () => {
     return inquirer.prompt([
         {
@@ -47,7 +47,7 @@ const promptPositions = () => {
         }
     ])
 }
-
+//This is the prompt to get user data and generate Engineer class
 const promptEngineer = () => {
     return inquirer.prompt([
         {
@@ -78,7 +78,7 @@ const promptEngineer = () => {
     })
     }
 
-
+//This is prompt to get user info and generate the Intern class
 const promptIntern = () => {
     return inquirer.prompt([
         {
@@ -109,6 +109,7 @@ const promptIntern = () => {
     })
 }
 
+
 managerPrompt()
     .then(({name, id, email, officeNumber}) => {
         const manager = new Manager(name, id, email, officeNumber)
@@ -128,7 +129,7 @@ managerPrompt()
             }
     })
     .then(generatePage = employeeArr => {
-        
+    
         const pageHTML = generatePage(employeeArr)
         fs.writeFile('./index.html', pageHTML, err => {
             if (err) throw new Error(err)
