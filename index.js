@@ -114,7 +114,7 @@ managerPrompt()
     .then(({name, id, email, officeNumber}) => {
         const manager = new Manager(name, id, email, officeNumber)
         employeeArr.push(manager)
-        console.log(employeeArr)
+        
     })    
     .then(promptPositions) 
     .then(answers => {
@@ -125,20 +125,22 @@ managerPrompt()
             } else if(answers.positions == "intern"){
                 return promptIntern()
             } else {
-            return 
+            return  employeeArr
             }
     })
-    .then(generatePage = employeeArr => {
-    
-        const pageHTML = generatePage(employeeArr)
-        fs.writeFile('./index.html', pageHTML, err => {
-            if (err) throw new Error(err)
-            console.log("Check out your new list of employees in the index.html file in the directory")
-        })
-        
-    })
+   .then(employeeArr => {
+       generatePage(employeeArr)
+       const pageHTML = generatePage(employeeArr)
+       fs.writeFile('./index.html', pageHTML, err => {
+           if (err) throw new Error(err)
+           //console.log("Check out your new list of employees in the index.html file in the directory")
+       })
+  
 
-    
+   }) 
+   
+  
+
     
         
     

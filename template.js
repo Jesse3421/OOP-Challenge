@@ -1,23 +1,26 @@
-const employeeArr = require('./index')
+//const employeeArr = require('./index')
 
 
-const buildTeam = employeeArr => {
+function buildTeam(employeeArr) {
     for(i = 0; i > employeeArr.length; i++) {
-        let team = ''
+        let team = []
+        listArr= []
         let role = employeeArr[i].getRole()
         console.log(role)
         let additionalData = ''
 
         if(role === 'Manager'){
             additionalData = employeeArr[i].officeNumber
+            return additionalData
         } else if(role === 'Intern'){
             additionalData = employeeArr[i].school
         } else if(role === 'Engineer') {
-            additionalData = employeeArr[i].github
+            additionalData = employeeArr[i].github 
         } else {
             console.log('The role does not exist')
         }
-        team = team + `<div class="card" style="width: 18rem;">
+        console.log(additionalData)
+    team = team + `<div class="card" style="width: 18rem;">
                        <div class="card-header">
                        ${role}
                        </div>
@@ -28,14 +31,18 @@ const buildTeam = employeeArr => {
                             <li class="list-group-item"> ${additionalData} </li>
                             </ul>
                         </div>
-                        </div>`
+                </div>`
+                        console.log(team)
+    listArr.push(team, +1)
+    console.log(listArr)
     }
+    return team
 }
 
 
 function generatePage(employeeArr) {
 console.log(employeeArr)
-buildTeam(employeeArr)
+
 
 return`
 <!DOCTYPE html>
@@ -45,17 +52,17 @@ return`
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Team</title>
+    <title>My Team</title>   
 </head>
 <body>
     <div class="" id="">
-    ${team}
+    ${buildTeam.team}
     </div>
 </body>
 <script>
-</html>
-`
+</html>`
+
 }
 
 
-module.exports = generatePage;
+module.exports = generatePage; 
