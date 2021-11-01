@@ -7,8 +7,15 @@ const Intern = require("./lib/Intern")
 const Engineer = require("./lib/Engineer")
 const Employee = require("./lib/Employee")
 const { choices } = require("yargs")
-const generatePage = require("./template.js")
+const buildTeam = require("./template.js")
+
+const OUTPUT_DIR = path.resolve(__dirname, "Results");
+const outputPath = path.join(OUTPUT_DIR, "employeeList.html")
+
+
 const employeeArr = []
+
+
 //const generatePage = require("./src/template.html")
 //import classes (manager, intern, engineer) 
 
@@ -114,7 +121,7 @@ managerPrompt()
     .then(({name, id, email, officeNumber}) => {
         const manager = new Manager(name, id, email, officeNumber)
         employeeArr.push(manager)
-        
+        console.log(employeeArr)
     })    
     .then(promptPositions) 
     .then(answers => {
@@ -129,12 +136,9 @@ managerPrompt()
             }
     })
    .then(employeeArr => {
-       generatePage(employeeArr)
-       const pageHTML = generatePage(employeeArr)
-       fs.writeFile('./index.html', pageHTML, err => {
-           if (err) throw new Error(err)
-           //console.log("Check out your new list of employees in the index.html file in the directory")
-       })
+        //generatePage(employeeArr)
+       const pageHTML = buildTeam(employeeArr)
+       fs.writeFileSync(outputPath, pageHTML, "utf-8");
   
 
    }) 

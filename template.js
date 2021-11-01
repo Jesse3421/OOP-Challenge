@@ -7,74 +7,75 @@ const Engineer = require("./lib/Engineer")
 const Employee = require("./lib/Employee")
 
 function buildTeam(employeeArr) {
-    employeeArr.forEach(employee => {
-        let role = this.employee
-        console.log(employee)
-        console.log(employee)
-        if(role === 'Manager'){
-            additionalData = employee.officeNumber
-            return renderTeam(additionalData)
-        } else if(role === 'Intern'){
-            additionalData = employee.school
-            return renderTeam(additionalData)
-        } else if(role === 'Engineer') {
-            additionalData = employee.github
-            return renderTeam(additionalData) 
-        } else {
-            console.log('The role does not exist')
+
+    console.log(employeeArr)
+    function generateManager(manager) {
+         return `</div>
+         <ul class="list group list-group-flush">
+         <li class="list-group-item"> Manager </li>
+         <li class="list-group-item"> Name: ${manager.getName()} </li>
+         <li class="list-group-item"> Id: ${manager.getId()} </li> 
+         <li class="list-group-item"> Email: ${manager.getEmail()} </li>
+         <li class="list-group-item"> Office Number: ${manager.getOfficeNumber()} </li>
+         </ul>
+         </div>
+         </div>`
     }
-    })
-}
-  
 
-function renderTeam(additionalData) {
-    let team = ''
-    let listArr = []
-        team = team + `<div class="card" style="width: 18rem;">
-                       <div class="card-header">
-                       ${role}
-                       </div>
-                            <ul class="list group list-group-flush">
-                            <li class="list-group-item"> ${employeeArr[i].name} </li>
-                            <li class="list-group-item"> ${employeeArr[i].id} </li> 
-                            <li class="list-group-item"> ${employeeArr[i].email} </li>
-                            <li class="list-group-item"> ${additionalData} </li>
-                            </ul>
-                        </div>
-                </div>`
-        console.log(team)
-        listArr.push(team)
-        console.log(listArr)
-        }
-
-   
-
-
-
-function generatePage(employeeArr) {
-console.log(employeeArr)
-buildTeam(employeeArr)
-
-return`
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Team</title>   
-</head>
-<body>
-    <div class="" id="">
-    ${buildTeam(listArr)}
+    function generateEngineer(engineer) {
+         return `</div>
+    <ul class="list group list-group-flush">
+    <li class="list-group-item"> Engineer </li>
+    <li class="list-group-item"> Name: ${engineer.getName()} </li>
+    <li class="list-group-item"> Id: ${engineer.getId()} </li> 
+    <li class="list-group-item"> Email: ${engineer.getEmail()} </li>
+    <li class="list-group-item"> Github Username: ${engineer.getGithub()} </li>
+    </ul>
     </div>
-</body>
-</html>
-`
+    </div>`
+    }
 
+    function generateIntern(intern) {
+     return   `</div>
+    <ul class="list group list-group-flush">
+    <li class="list-group-item"> Intern </li>
+    <li class="list-group-item"> Name: ${intern.getName()} </li>
+    <li class="list-group-item"> Id: ${intern.getId()} </li> 
+    <li class="list-group-item"> Email: ${intern.getEmail()} </li>
+    <li class="list-group-item"> School: ${intern.getSchool()} </li>
+    </ul>
+    </div>
+    </div>`
+    }
+
+    const listArr = []
+    listArr.push(employeeArr.filter(employee => employee.getRole() === "Manager").map(manager => generateManager(manager)))
+
+    listArr.push(employeeArr.filter(employee => employee.getRole() === "Engineer").map(engineer => generateEngineer(engineer)).join(""))
+
+    listArr.push(employeeArr.filter(employee => employee.getRole() === "Intern").map(intern => generateIntern(intern)).join(""))
+
+    return listArr.join("")
 }
 
+module.exports = employeeArr => {
+    return`
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>My Team</title>   
+    </head>
+    <body>
+        <div class="" id="">
+        ${buildTeam(employeeArr)}
+        </div>
+    </body>
+    </html>
+    `
 
-module.exports = generatePage; 
+}
 
