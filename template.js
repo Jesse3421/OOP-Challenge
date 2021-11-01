@@ -1,26 +1,36 @@
 //const employeeArr = require('./index')
-
+const team = []
+const listArr = []
+const Manager = require("./lib/Manager")
+const Intern = require("./lib/Intern")
+const Engineer = require("./lib/Engineer")
+const Employee = require("./lib/Employee")
 
 function buildTeam(employeeArr) {
-    for(i = 0; i > employeeArr.length; i++) {
-        let team = []
-        listArr= []
-        let role = employeeArr[i].getRole()
-        console.log(role)
-        let additionalData = ''
-
+    employeeArr.forEach(employee => {
+        let role = this.employee
+        console.log(employee)
+        console.log(employee)
         if(role === 'Manager'){
-            additionalData = employeeArr[i].officeNumber
-            return additionalData
+            additionalData = employee.officeNumber
+            return renderTeam(additionalData)
         } else if(role === 'Intern'){
-            additionalData = employeeArr[i].school
+            additionalData = employee.school
+            return renderTeam(additionalData)
         } else if(role === 'Engineer') {
-            additionalData = employeeArr[i].github 
+            additionalData = employee.github
+            return renderTeam(additionalData) 
         } else {
             console.log('The role does not exist')
-        }
-        console.log(additionalData)
-    team = team + `<div class="card" style="width: 18rem;">
+    }
+    })
+}
+  
+
+function renderTeam(additionalData) {
+    let team = ''
+    let listArr = []
+        team = team + `<div class="card" style="width: 18rem;">
                        <div class="card-header">
                        ${role}
                        </div>
@@ -32,17 +42,18 @@ function buildTeam(employeeArr) {
                             </ul>
                         </div>
                 </div>`
-                        console.log(team)
-    listArr.push(team, +1)
-    console.log(listArr)
-    }
-    return team
-}
+        console.log(team)
+        listArr.push(team)
+        console.log(listArr)
+        }
+
+   
+
 
 
 function generatePage(employeeArr) {
 console.log(employeeArr)
-
+buildTeam(employeeArr)
 
 return`
 <!DOCTYPE html>
@@ -56,13 +67,14 @@ return`
 </head>
 <body>
     <div class="" id="">
-    ${buildTeam.team}
+    ${buildTeam(listArr)}
     </div>
 </body>
-<script>
-</html>`
+</html>
+`
 
 }
 
 
 module.exports = generatePage; 
+
