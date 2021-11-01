@@ -53,6 +53,17 @@ const promptPositions = () => {
             choices: ["engineer", "intern", "OR finish building your team"] 
         }
     ])
+    .then((answers) => {
+        
+        console.log(answers)
+            if(answers.positions === "engineer") {
+                return promptEngineer()
+            } else if(answers.positions == "intern"){
+                return promptIntern()
+            } else {
+            return  employeeArr
+            }
+    })
 }
 //This is the prompt to get user data and generate Engineer class
 const promptEngineer = () => {
@@ -122,26 +133,16 @@ managerPrompt()
         const manager = new Manager(name, id, email, officeNumber)
         employeeArr.push(manager)
         console.log(employeeArr)
-    })    
-    .then(promptPositions) 
-    .then(answers => {
-        
-        console.log(answers)
-            if(answers.positions === "engineer") {
-                return promptEngineer()
-            } else if(answers.positions == "intern"){
-                return promptIntern()
-            } else {
-            return  employeeArr
-            }
+        promptPositions(employeeArr) 
+        .then(writeFile)
     })
-   .then(employeeArr => {
-        //generatePage(employeeArr)
+
+function writeFile(employeeArr) {  
        const pageHTML = buildTeam(employeeArr)
        fs.writeFileSync(outputPath, pageHTML, "utf-8");
-  
+}
 
-   }) 
+
    
   
 

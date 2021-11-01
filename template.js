@@ -10,9 +10,9 @@ function buildTeam(employeeArr) {
 
     console.log(employeeArr)
     function generateManager(manager) {
-         return `</div>
+         return `<div class="card" style="width: 18rem;">
+         <div class="card-header">Manager</div>
          <ul class="list group list-group-flush">
-         <li class="list-group-item"> Manager </li>
          <li class="list-group-item"> Name: ${manager.getName()} </li>
          <li class="list-group-item"> Id: ${manager.getId()} </li> 
          <li class="list-group-item"> Email: ${manager.getEmail()} </li>
@@ -23,22 +23,22 @@ function buildTeam(employeeArr) {
     }
 
     function generateEngineer(engineer) {
-         return `</div>
-    <ul class="list group list-group-flush">
-    <li class="list-group-item"> Engineer </li>
-    <li class="list-group-item"> Name: ${engineer.getName()} </li>
-    <li class="list-group-item"> Id: ${engineer.getId()} </li> 
-    <li class="list-group-item"> Email: ${engineer.getEmail()} </li>
-    <li class="list-group-item"> Github Username: ${engineer.getGithub()} </li>
-    </ul>
-    </div>
-    </div>`
+        return `<div class="card" style="width: 18rem;">
+        <div class="card-header">Engineer</div>
+        <ul class="list group list-group-flush">
+        <li class="list-group-item"> Name: ${engineer.getName()} </li>
+        <li class="list-group-item"> Id: ${engineer.getId()} </li> 
+        <li class="list-group-item"> Email: ${engineer.getEmail()} </li>
+        <li class="list-group-item"> Github Username: ${engineer.getGithub()} </li>
+        </ul>
+        </div>
+        </div>`
     }
 
     function generateIntern(intern) {
-     return   `</div>
+     return   `<div class="card" style="width: 18rem;">
+    <div class="card-header">Intern</div>
     <ul class="list group list-group-flush">
-    <li class="list-group-item"> Intern </li>
     <li class="list-group-item"> Name: ${intern.getName()} </li>
     <li class="list-group-item"> Id: ${intern.getId()} </li> 
     <li class="list-group-item"> Email: ${intern.getEmail()} </li>
@@ -49,13 +49,18 @@ function buildTeam(employeeArr) {
     }
 
     const listArr = []
+    
     listArr.push(employeeArr.filter(employee => employee.getRole() === "Manager").map(manager => generateManager(manager)))
 
+    console.log(employeeArr)
     listArr.push(employeeArr.filter(employee => employee.getRole() === "Engineer").map(engineer => generateEngineer(engineer)).join(""))
-
+    console.log(listArr)
     listArr.push(employeeArr.filter(employee => employee.getRole() === "Intern").map(intern => generateIntern(intern)).join(""))
 
+    console.log(listArr)
     return listArr.join("")
+    
+
 }
 
 module.exports = employeeArr => {
