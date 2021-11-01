@@ -133,7 +133,7 @@ managerPrompt()
         const manager = new Manager(name, id, email, officeNumber)
         employeeArr.push(manager)
         console.log(employeeArr)
-        promptPositions(employeeArr) 
+        promptPositions() 
         .then(writeFile)
     })
 

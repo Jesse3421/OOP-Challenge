@@ -51,10 +51,11 @@ function buildTeam(employeeArr) {
     const listArr = []
     
     listArr.push(employeeArr.filter(employee => employee.getRole() === "Manager").map(manager => generateManager(manager)))
-
-    console.log(employeeArr)
+    
+    
     listArr.push(employeeArr.filter(employee => employee.getRole() === "Engineer").map(engineer => generateEngineer(engineer)).join(""))
     console.log(listArr)
+    
     listArr.push(employeeArr.filter(employee => employee.getRole() === "Intern").map(intern => generateIntern(intern)).join(""))
 
     console.log(listArr)
