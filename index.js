@@ -137,7 +137,7 @@ managerPrompt()
         .then(writeFile)
     })
 
-function writeFile(employeeArr) {  
+function writeFile() {  
        const pageHTML = buildTeam(employeeArr)
        fs.writeFileSync(outputPath, pageHTML, "utf-8");
 }
