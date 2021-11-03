@@ -8,7 +8,7 @@ const Employee = require("./lib/Employee")
 
 function buildTeam(employeeArr) {
 
-    console.log(employeeArr)
+    
     function generateManager(manager) {
          return `
          <div class="card" style="width: 18rem;">
@@ -73,7 +73,7 @@ function buildTeam(employeeArr) {
     
     listArr.push(employeeArr.filter(employee => employee.getRole() === "Intern").map(intern => generateIntern(intern)).join(""))
 
-    console.log(listArr)
+    
     return listArr.join("")
     
 

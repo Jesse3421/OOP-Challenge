@@ -2,7 +2,7 @@
   https://github.com/Jesse3421/OOP-Challenge
   ### Description
   This project is a team profile generator where a user can input information for a manager, engineer, or an intern. Then once all information is inputed then the list is rendered in HTML with all of that employees information displayed and the user can then click on the employees email and send them an email. The video 
-  walkthrough to demonstrate how to use this program can be found here https://drive.google.com/file/d/1Fyj_5bv4ddwIExGsPqlb4CUTSHFpjVb0/view
+  walkthrough to demonstrate how to use this program can be found here https://watch.screencastify.com/v/jjEgR5xcEzGa1AFki2eP
   ### Table of Contents 
   * [Installation](#installation)
   * [Usage](#usage)

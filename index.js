@@ -8,7 +8,6 @@ const Engineer = require("./lib/Engineer")
 const Employee = require("./lib/Employee")
 const { choices } = require("yargs")
 const buildTeam = require("./template.js")
-
 const OUTPUT_DIR = path.resolve(__dirname, "Results");
 const outputPath = path.join(OUTPUT_DIR, "employeeList.html")
 
