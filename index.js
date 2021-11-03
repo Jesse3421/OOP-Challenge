@@ -55,13 +55,12 @@ const promptPositions = () => {
     ])
     .then((answers) => {
         
-        console.log(answers)
             if(answers.positions === "engineer") {
                 return promptEngineer()
             } else if(answers.positions == "intern"){
                 return promptIntern()
             } else {
-            return  employeeArr
+            return  writeFile(employeeArr)
             }
     })
 }
@@ -91,7 +90,6 @@ const promptEngineer = () => {
     .then(({name, id, email, github}) => {
         const engineer = new Engineer(name, id, email, github)
         employeeArr.push(engineer)
-        console.log(employeeArr)
         promptPositions()
     })
     }
@@ -122,7 +120,6 @@ const promptIntern = () => {
     .then(({name, id, email, school}) => {
         const intern = new Intern(name, id, email, school)
         employeeArr.push(intern)
-        console.log(employeeArr)
         promptPositions()
     })
 }
@@ -132,9 +129,7 @@ managerPrompt()
     .then(({name, id, email, officeNumber}) => {
         const manager = new Manager(name, id, email, officeNumber)
         employeeArr.push(manager)
-        console.log(employeeArr)
         promptPositions() 
-        .then(writeFile)
     })
 
 function writeFile() {  

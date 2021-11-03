@@ -10,12 +10,15 @@ function buildTeam(employeeArr) {
 
     console.log(employeeArr)
     function generateManager(manager) {
-         return `<div class="card" style="width: 18rem;">
-         <div class="card-header">Manager</div>
+         return `
+         <div class="card" style="width: 18rem;">
+         <div class="card-header">
+         Manager
+         </div>
          <ul class="list group list-group-flush">
          <li class="list-group-item"> Name: ${manager.getName()} </li>
          <li class="list-group-item"> Id: ${manager.getId()} </li> 
-         <li class="list-group-item"> Email: ${manager.getEmail()} </li>
+         <li class="list-group-item"> Email: <a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a></li>
          <li class="list-group-item"> Office Number: ${manager.getOfficeNumber()} </li>
          </ul>
          </div>
@@ -25,13 +28,16 @@ function buildTeam(employeeArr) {
     }
 
     function generateEngineer(engineer) {
-        return `<div class="card" style="width: 18rem;">
-        <div class="card-header">Engineer</div>
+        return `
+        <div class="card" style="width: 18rem;">
+        <div class="card-header">
+        Engineer
+        </div>
         <ul class="list group list-group-flush">
         <li class="list-group-item"> Name: ${engineer.getName()} </li>
         <li class="list-group-item"> Id: ${engineer.getId()} </li> 
-        <li class="list-group-item"> Email: ${engineer.getEmail()} </li>
-        <li class="list-group-item"> Github Username: ${engineer.getGithub()} </li>
+        <li class="list-group-item"> Email: <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a></li>
+        <li class="list-group-item"> Github Username: <a href="https://www.github.com/${engineer.getGithub()}">${engineer.getGithub()}</a></li>
         </ul>
         </div>
         <br>
@@ -40,12 +46,15 @@ function buildTeam(employeeArr) {
     }
 
     function generateIntern(intern) {
-        return   `<div class="card" style="width: 18rem;">
-        <div class="card-header">Intern</div>
+        return   `
+        <div class="card" style="width: 18rem;">
+        <div class="card-header">
+        Intern
+        </div>
         <ul class="list group list-group-flush">
         <li class="list-group-item"> Name: ${intern.getName()} </li>
         <li class="list-group-item"> Id: ${intern.getId()} </li> 
-        <li class="list-group-item"> Email: ${intern.getEmail()} </li>
+        <li class="list-group-item"> Email: <a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a> </li>
         <li class="list-group-item"> School: ${intern.getSchool()} </li>
         </ul>
         </div>  
@@ -56,7 +65,7 @@ function buildTeam(employeeArr) {
 
     const listArr = []
     
-    listArr.push(employeeArr.filter(employee => employee.getRole() === "Manager").map(manager => generateManager(manager)))
+    listArr.push(employeeArr.filter(employee => employee.getRole() === "Manager").map(manager => generateManager(manager)).join(""))
     
     
     listArr.push(employeeArr.filter(employee => employee.getRole() === "Engineer").map(engineer => generateEngineer(engineer)).join(""))
@@ -82,8 +91,10 @@ module.exports = employeeArr => {
         <title>My Team</title>   
     </head>
     <body>
-        <div class="" id="">
+        <div class=""
+        <div class="col-sm-3" id="">
         ${buildTeam(employeeArr)}
+        </div>
         </div>
     </body>
     </html>
